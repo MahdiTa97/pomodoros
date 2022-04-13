@@ -6,9 +6,21 @@ chrome.alarms.onAlarm.addListener((alarms) => {
   if (alarms.name === "pomodoros") {
     chrome.storage.local.get(alarmsKeys).then((res) => {
       if (res.isRunning) {
-        console.log("=====> res.timer+1 <=====", res.isRunning, res.timer + 1);
+        let timer = res.timer + 1;
+        let isRunning = res.isRunning;
+        if (timer === 25 * 60) {
+          this.registration.showNotification("pomodoros", {
+            title: "Pomodoros Message",
+            type: "basic",
+            iconUrl: "../assets/icon.png",
+            message: "25 minutes has passed!!",
+          });
+          timer = 0;
+          isRunning = false;
+        }
         chrome.storage.local.set({
-          timer: res.timer + 1,
+          timer,
+          isRunning,
         });
       }
     });

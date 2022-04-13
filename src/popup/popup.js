@@ -1,6 +1,31 @@
 let tasks = [];
 
-chrome.storage.local.get(["isRunning", "timer"]).then((res) => {
+function secondsToTime(t) {
+  const diff = 25 * 60 - t;
+  if (diff < 0) return "Finished";
+  const m = Math.floor((diff % 3600) / 60)
+      .toString()
+      .padStart(2, "0"),
+    s = Math.floor(diff % 60)
+      .toString()
+      .padStart(2, "0");
+  return m + ":" + s;
+}
+
+const time = document.getElementById("time");
+
+function updateTime() {
+  chrome.storage.local.get(["timer"]).then((res) => {
+    time.textContent = secondsToTime(res.timer);
+  });
+}
+
+updateTime();
+setInterval(() => {
+  updateTime();
+}, 1000);
+
+chrome.storage.local.get(["isRunning"]).then((res) => {
   startTimerBtn.textContent = res.isRunning ? "Pause Timer" : "Start Timer";
 });
 
