@@ -3,10 +3,11 @@ body {
   height: 400px;
   margin: 0;
   padding: 0;
+  background-color: darkorchid;
 }
 
 h1 {
-  color: palevioletred;
+  color: white;
 }
 
 .header {

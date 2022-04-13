@@ -17,5 +17,8 @@
       "32": "./src/assets/icon.png"
     }
   },
-  "permissions": ["storage"]
+  "permissions": ["storage", "alarms", "notifications"],
+  "background": {
+    "service_worker": "./src/background/background.js"
+  }
 }
