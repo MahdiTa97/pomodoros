@@ -20,5 +20,6 @@
   "permissions": ["storage", "alarms", "notifications"],
   "background": {
     "service_worker": "./src/background/background.js"
-  }
+  },
+  "options_page": "./src/options/options.html"
 }

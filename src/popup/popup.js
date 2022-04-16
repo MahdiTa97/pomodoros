@@ -1,7 +1,7 @@
 let tasks = [];
 
-function secondsToTime(t) {
-  const diff = 25 * 60 - t;
+function secondsToTime(t, tMax) {
+  const diff = tMax * 60 - t;
   if (diff < 0) return "Finished";
   const m = Math.floor((diff % 3600) / 60)
       .toString()
@@ -15,8 +15,8 @@ function secondsToTime(t) {
 const time = document.getElementById("time");
 
 function updateTime() {
-  chrome.storage.local.get(["timer"]).then((res) => {
-    time.textContent = secondsToTime(res.timer);
+  chrome.storage.local.get(["timer", "timeOption"]).then((res) => {
+    time.textContent = secondsToTime(res.timer, res.timeOption);
   });
 }
 

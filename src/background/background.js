@@ -1,4 +1,4 @@
-const alarmsKeys = ["timer", "isRunning"];
+const alarmsKeys = ["timer", "isRunning", "timeOption"];
 
 chrome.alarms.create("pomodoros", { periodInMinutes: 1 / 60 });
 
@@ -8,12 +8,12 @@ chrome.alarms.onAlarm.addListener((alarms) => {
       if (res.isRunning) {
         let timer = res.timer + 1;
         let isRunning = res.isRunning;
-        if (timer === 25 * 60) {
+        if (timer === res.timeOption * 60) {
           chrome.notifications.create("pomodoros", {
-            title: "Pomodoros Message",
             type: "basic",
+            title: "Pomodoros Message",
+            message: `${res.timeOption} minutes has passed!!`,
             iconUrl: "../assets/icon.png",
-            message: "25 minutes has passed!!",
           });
           timer = 0;
           isRunning = false;
@@ -30,6 +30,7 @@ chrome.alarms.onAlarm.addListener((alarms) => {
 chrome.storage.local.get(alarmsKeys).then((res) => {
   chrome.storage.local.set({
     timer: res.timer ?? 0,
+    timeOption: res.timeOption ?? 25,
     isRunning: res.isRunning ?? false,
   });
 });
