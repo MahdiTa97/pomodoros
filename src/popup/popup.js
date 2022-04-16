@@ -26,14 +26,14 @@ setInterval(() => {
 }, 1000);
 
 chrome.storage.local.get(["isRunning"]).then((res) => {
-  startTimerBtn.textContent = res.isRunning ? "Pause Timer" : "Start Timer";
+  startTimerBtn.textContent = res.isRunning ? "Pause" : "Start";
 });
 
 const startTimerBtn = document.getElementById("start-timer-btn");
 startTimerBtn.addEventListener("click", () => {
   chrome.storage.local.get(["isRunning"]).then((res) => {
     chrome.storage.local.set({ isRunning: !res.isRunning });
-    startTimerBtn.textContent = res.isRunning ? "Start Timer" : "Pause Timer";
+    startTimerBtn.textContent = res.isRunning ? "Start" : "Pause";
   });
 });
 
@@ -43,7 +43,7 @@ resetTimerBtn.addEventListener("click", () => {
     timer: 0,
     isRunning: false,
   });
-  startTimerBtn.textContent = "Start Timer";
+  startTimerBtn.textContent = "Start";
 });
 
 const addTaskBtn = document.getElementById("add-task-btn");
