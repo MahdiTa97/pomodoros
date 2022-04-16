@@ -1,0 +1,45 @@
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #602a87;
+  color: white;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+h1 {
+  text-align: center;
+  font-size: 2.5rem;
+  text-transform: capitalize;
+}
+
+label {
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+}
+
+input {
+  color: #602a87;
+  font-size: 1rem;
+  border: none;
+  border-radius: 3px;
+  padding: 3px 5px;
+}
+
+button {
+  color: #602a87;
+  font-size: 1rem;
+  border: none;
+  border-radius: 3px;
+  margin-top: 20px;
+  padding: 5px 15px;
+  cursor: pointer;
+}
+
+button:active {
+  background-color: #602a87;
+  color: white;
+  border: 1px white solid;
+  font-weight: bold;
+}
