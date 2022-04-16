@@ -9,7 +9,7 @@ chrome.alarms.onAlarm.addListener((alarms) => {
         let timer = res.timer + 1;
         let isRunning = res.isRunning;
         if (timer === 25 * 60) {
-          this.registration.showNotification("pomodoros", {
+          chrome.notifications.create("pomodoros", {
             title: "Pomodoros Message",
             type: "basic",
             iconUrl: "../assets/icon.png",
